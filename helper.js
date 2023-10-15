@@ -6,7 +6,7 @@ var fs = require('fs');
 const path = require('path');
 
 const email_list = path.join(__dirname, './public/email_list.xlsx');
-const email_content = path.join(__dirname, './public/email_content.txt');
+const email_content = path.join(__dirname, './public/email_content.hbs');
 const email_assets = path.join(__dirname, './public/assets/');
 
 
@@ -65,7 +65,7 @@ module.exports = {
                 Object.keys(obj).forEach(key => {
                     if (key.includes('asset_')) {
                         var asset = {};
-                        
+
                         asset['filename'] = obj[key];
                         asset['path'] = email_assets + `${key}\\` + obj[key];
 
@@ -93,7 +93,7 @@ module.exports = {
 
     // Send email to all recipients
     sendEmailToAll: async (data) => {
-        var content = fs.readFileSync(email_content, 'utf8');
+        var content = fs.readFileSync(email_content, 'utf8').toString();
 
         await module.exports.getDataFromExcel().then((result) => {
             result.forEach((item) => {
