@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Celebrating Your Achievement</title>
+    <style>
+        body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        .header {
+            background-color: #007BFF;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Celebrating Your Achievement</h1>
+        </div>
+        <div class="content">
+            <p>Dear <strong>{{full_name}}</strong>,</p>
+            <p>Congratulations on your outstanding achievement in <strong>[Event/Program Name]</strong>! We are excited to present you
+                with your participation certificate and some unique digital assets to commemorate this momentous
+                occasion.</p>
+
+            <table>
+                <tr>
+                    <td>Full Name</td>
+                    <td style="padding: 0px 1rem;">:</td>
+                    <td><strong>{{full_name}}</strong></td>
+                </tr>
+                <tr>
+                    <td>Email Address</td>
+                    <td style="padding: 0px 1rem;">:</td>
+                    <td><strong>{{email_address}}</strong></td>
+                </tr>
+                <tr>
+                    <td>Certificate ID</td>
+                    <td style="padding: 0px 1rem;">:</td>
+                    <td><strong>{{certificate_id}}</strong></td>
+                </tr>
+            </table>
+
+            <p>Attached to this email, you will find your participation certificate and a digital badge. Feel free to
+                share your achievement with your friends and family on social media.</p>
+
+            <p>Thank you for your dedication and hard work. We hope you continue to excel in your endeavors.</p>
+            <p>Best regards,<br><strong>Inovus Labs IEDC</strong></p>
+        </div>
+    </div>
+</body>
+
+</html>
