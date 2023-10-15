@@ -1,4 +1,8 @@
-# InoMail ![GitHub license](https://img.shields.io/github/license/inovus-labs/inomail)
+# InoMail
+
+![GitHub license](https://img.shields.io/github/license/inovus-labs/inomail) ![GitHub repo size](https://img.shields.io/github/repo-size/inovus-labs/inomail) ![GitHub issues](https://img.shields.io/github/issues/inovus-labs/inomail)
+![GitHub last commit](https://img.shields.io/github/last-commit/inovus-labs/inomail) ![GitHub top language](https://img.shields.io/github/languages/top/inovus-labs/inomail) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/inovus-labs/inomail)
+
 
 **InoMail** is a simple [Node.js](https://nodejs.org/en) project that allows you to send out personalized, unique emails with multiple unique and/or common file attachments. It's a versatile tool for automating email communications, suitable for various use cases such as newsletters, marketing campaigns, personalized notifications or post-event follow-ups.
 
