@@ -1,27 +1,28 @@
-Creating a README for a Node.js project to send out personalized unique emails with multiple unique and/or common file attachments can help you document your project and make it more accessible to collaborators and users. Here's a template you can use as a starting point for your project's README:
+# InoMail ![GitHub license](https://img.shields.io/github/license/inovus-labs/inomail)
 
-# Project Name
+**InoMail** is a simple [Node.js](https://nodejs.org/en) project that allows you to send out personalized, unique emails with multiple unique and/or common file attachments. It's a versatile tool for automating email communications, suitable for various use cases such as newsletters, marketing campaigns, personalized notifications or post-event follow-ups.
 
-## Description
+## Table of Contents
 
-This Node.js project allows you to send out personalized, unique emails with multiple unique and/or common file attachments. It's a versatile tool for automating email communications, suitable for various use cases such as newsletters, marketing campaigns, or personalized notifications.
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage) 
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
 ## Features
 
-- Personalized emails: Customize the content of each email based on recipient data.
-- Multiple attachments: Attach one or more files to each email.
-- Common attachments: Include common attachments in all emails.
-- Email scheduling: Send emails immediately or schedule them for a later time.
-- Logging: Track the status of sent emails and any errors that occur.
-- Easy configuration: Configure the email templates, recipients, and attachments through a user-friendly interface.
+- **Personalized emails** : Customize the content of each email based on recipient data.
+- **Multiple attachments** : Attach one or more unique or common files to each email.
 
 ## Installation
 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/your-project.git
-   cd your-project
+   git clone https://github.com/inovus-labs/inomail.git
+   cd inomail
    ```
 
 2. Install dependencies:
@@ -30,15 +31,31 @@ This Node.js project allows you to send out personalized, unique emails with mul
    npm install
    ```
 
-3. Configure the project by editing the `config.js` file. Make sure to provide your SMTP server details, email templates, and other necessary configuration.
+3. Create a `.env` file in the project root directory and add the following environment variables:
+
+   ```bash
+   EMAIL_USER = <your_email_address>
+   EMAIL_PASS = <your_email_app_password>
+   PORT = 5000
+   ```
 
 ## Usage
 
-1. Populate the recipient data: Prepare a CSV or JSON file containing recipient information, such as names, email addresses, and any custom fields required for email customization.
+1. **Populate the recipient data:** Prepare a CSV or XLSX file containing recipient information, such as `full_name` , `email_address` and any custom fields required for email customization.
 
-2. Add attachments: Place the common attachments in a designated folder. For unique attachments, specify the file paths in your recipient data (e.g., a column in your CSV).
+   > The first row of the file should contain the column names. The column names will be used as placeholders in the email templates.
+   
+   > For example, if you have a column named `full_name` , you can use the placeholder `{full_name}` in your email templates to include the recipient's full name in the email content.
 
-3. Customize email templates: Create email templates in the project's designated template folder. Use placeholders to include recipient-specific information.
+   > Save the file in the project's `public` folder as `email_list.xlsx` .
+
+2. **Add attachments:** For both unique and common attachments, specify the file names in your recipient data (e.g., a column in your XLSX file). Place the files in the project's designated attachments folder.
+
+   > Column names should match the subfolder names in the attachments folder (e.g., if you have a column named `asset_1` , the corresponding file should be placed in the `asset_1` subfolder).
+   
+   > Common assets are treated as unique assets for each recipient. If you want to include the same file in all emails, add a column named `common_asset` to your recipient data and place the file in the `common_asset` subfolder.
+
+3. **Customize email templates:** Create HTML email templates in the project's `public` folder. Use placeholders to include recipient-specific information. Save the template as `email_content.hbs`.
 
 4. Run the project:
 
@@ -46,25 +63,7 @@ This Node.js project allows you to send out personalized, unique emails with mul
    npm start
    ```
 
-5. Follow the on-screen prompts to select the recipient data file, specify email scheduling, and monitor the progress of email sending.
-
-## Configuration
-
-Edit the `config.js` file to configure the following settings:
-
-- SMTP server details
-- Email templates folder
-- Common attachments folder
-- Log file path
-- Default email sending options
-
-## Dependencies
-
-- [Node.js](https://nodejs.org/)
-- [Nodemailer](https://nodemailer.com/)
-- [csv-parser](https://www.npmjs.com/package/csv-parser) (for parsing CSV recipient data)
-- [moment](https://momentjs.com/) (for scheduling emails)
-- [dotenv](https://www.npmjs.com/package/dotenv) (for managing environment variables)
+5. The terminal start prompting the results of the email sending process.
 
 ## Contributing
 
@@ -72,16 +71,13 @@ If you'd like to contribute to this project, please follow our [contribution gui
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [Mozilla Public License 2.0](LICENSE).
 
-## Acknowledgments
-
-- This project was inspired by [mention any sources or libraries that inspired or helped your project].
 
 ## Contact
 
-- For issues or feature requests, please open an issue on the [GitHub repository](https://github.com/yourusername/your-project).
-- For questions or discussions, you can reach out to [your email address].
+- For issues or feature requests, please open an issue on the [GitHub repository](https://github.com/inovus-labs/inomail/issues).
+- For questions or discussions, you can reach out to [mail@arjunkrishna.in](mailto:mail@arjunkrishna.in).
 
 ---
 
