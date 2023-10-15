@@ -65,8 +65,10 @@ module.exports = {
                 Object.keys(obj).forEach(key => {
                     if (key.includes('asset_')) {
                         var asset = {};
+                        
                         asset['filename'] = obj[key];
-                        asset['path'] = email_assets + obj[key];
+                        asset['path'] = email_assets + `${key}\\` + obj[key];
+
                         assets.push(asset);
                         delete obj[key];
                     }
@@ -92,12 +94,15 @@ module.exports = {
     // Send email to all recipients
     sendEmailToAll: async (data) => {
         var content = fs.readFileSync(email_content, 'utf8');
-        var list = await module.exports.getDataFromExcel();
-        var body = null;
+
+        await module.exports.getDataFromExcel().then((result) => {
+            result.forEach((item) => {
         
-        list.forEach(async user => {
-            body = await module.exports.generateEmailBody(content, data);
-            module.exports.sendEmail(user['email_address'], data['Subject'], body, user['assets']);
+                module.exports.generateEmailBody(content, item).then((body) => {
+                    module.exports.sendEmail(item['email_address'], data['Subject'], body, item['assets']);
+                });
+                
+            });
         });
     }
 
