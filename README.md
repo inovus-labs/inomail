@@ -78,12 +78,6 @@ If you'd like to contribute to this project, please follow our [contribution gui
 
 This project is licensed under the [Mozilla Public License 2.0](LICENSE).
 
-
-## Contact
-
-- For issues or feature requests, please open an issue on the [GitHub repository](https://github.com/inovus-labs/inomail/issues).
-- For questions or discussions, you can reach out to [mail@arjunkrishna.in](mailto:mail@arjunkrishna.in).
-
 ---
 
 Feel free to customize this README to match your project's specifics. Providing clear instructions and documentation can help both you and potential users or collaborators understand and use your project effectively.
