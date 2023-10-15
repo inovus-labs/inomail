@@ -18,7 +18,8 @@
 ## Features
 
 - **Personalized emails** : Customize the content of each email based on recipient data.
-- **Multiple attachments** : Attach one or more unique or common files to each email.
+- **Attachments** : Attach both common and recipient-specific files to your emails.
+- **Handlebar templates** : Create and manage email templates with Handlebars.
 
 ## Installation
 
