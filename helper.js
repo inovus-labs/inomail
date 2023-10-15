@@ -12,37 +12,40 @@ const email_assets = path.join(__dirname, './public/assets/');
 
 module.exports = {
 
+
     // Send email with attachments to a single recipient
     sendEmail: async (email, subject, body, attachments) => {
-        var transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                user: process.env.EMAIL_USER,
-                pass: process.env.EMAIL_PASS
-            }
-        });
-
-        var mailOptions = {
-            from: process.env.EMAIL_USER,
-            to: email,
-            subject: subject,
-            html: body,
-            attachments: attachments ? attachments : null
-        };
-
-        transporter.sendMail(mailOptions, (error, info) => {
-            if (error) {
-                console.log(error);
-                return false;
-            } else {
-                console.log('Email sent: ' + info.response);
-                return true;
-            }
+        return new Promise((resolve, reject) => {
+            var transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: process.env.EMAIL_USER,
+                    pass: process.env.EMAIL_PASS
+                }
+            });
+    
+            var mailOptions = {
+                from: process.env.EMAIL_USER,
+                to: email,
+                subject: subject,
+                html: body,
+                attachments: attachments ? attachments : null
+            };
+    
+            transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                    console.log(error);
+                    reject(error);
+                } else {
+                    console.log('Email sent : ' + info.response);
+                    resolve(true);
+                }
+            });
         });
     },
 
 
-    // Get email list from excel file and return as array of objects
+    // Get data from excel file and return as array of objects
     getDataFromExcel: async () => {
         var workbook = new ExcelJS.Workbook();
         await workbook.xlsx.readFile(email_list);
@@ -89,23 +92,41 @@ module.exports = {
         var body = template(data);
         return body;
     },
-    
+
 
     // Send email to all recipients
     sendEmailToAll: async (data) => {
         var content = fs.readFileSync(email_content, 'utf8').toString();
 
-        await module.exports.getDataFromExcel().then((result) => {
-            result.forEach((item) => {
-        
-                module.exports.generateEmailBody(content, item).then((body) => {
-                    module.exports.sendEmail(item['email_address'], data['Subject'], body, item['assets']);
-                });
+        return new Promise((resolve, reject) => {
+            module.exports.getDataFromExcel().then((result) => {
                 
+                var promises = [];
+                result.forEach((item) => {
+                    
+                    promises.push(new Promise((resolve, reject) => {
+                        module.exports.generateEmailBody(content, item).then((body) => {
+
+                            module.exports.sendEmail(item['email_address'], data['Subject'], body, item['assets']).then((result) => {
+                                resolve(result);
+                            }).catch((error) => {
+                                reject(error);
+                            });
+                            
+                        });
+                    }));
+
+                });
+    
+                Promise.all(promises).then(() => {
+                    resolve('All emails sent');
+                }).catch((error) => {
+                    reject(error);
+                });
+
             });
         });
     }
-
     
 
 };
