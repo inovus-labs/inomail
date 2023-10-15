@@ -10,7 +10,7 @@ var helper = require('./helper');
     // });
 
     let data = {
-        "Subject": "Test Email from NodeJS",
+        "Subject": "Automated Email Test",
     }
 
     helper.sendEmailToAll(data).then((result) => {
